@@ -41,6 +41,16 @@ namespace Git.Controllers
         {
             var errors = validator.ValidateUser(model);
 
+            if (this.data.Users.Any(u => u.Username == model.Username))
+            {
+                errors.Add($"User with '{model.Username}' username already exists.");
+            }
+
+            if (this.data.Users.Any(u => u.Email == model.Email))
+            {
+                errors.Add($"User with '{model.Email}' e-mail already exists.");
+            }
+
             if (errors.Any())
             {
                 return Error(errors);
@@ -57,6 +67,26 @@ namespace Git.Controllers
             data.SaveChanges();
 
             return Redirect("Users/Login");
+        }
+
+        [HttpPost]
+        public HttpResponse Login(UserLoginViewModel model)
+        {
+            var hashedPassword = this.passwordHasher.HashPassword(model.Password);
+
+            var userId = data.Users
+                .Where(u => u.Password == hashedPassword && u.Username == model.Username)
+                .Select(u => u.Id)
+                .FirstOrDefault();
+
+            if (userId == null)
+            {
+                return Error("Username or password are not correct");
+            }
+
+            this.SignIn(userId);
+
+            return Redirect("/Repositories/All");
         }
     }
 }
