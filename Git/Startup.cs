@@ -1,6 +1,7 @@
 ﻿namespace Git
 {
     using System.Threading.Tasks;
+    using CarShop.Services;
     using Git.Data;
     using Git.Services;
     using Microsoft.EntityFrameworkCore;
@@ -17,7 +18,9 @@
                     .MapControllers())
                 .WithServices(services => services
                     .Add<IViewEngine, CompilationViewEngine>()
-                    .Add<ApplicationDbContext>())
+                    .Add<ApplicationDbContext>()
+                    .Add<IValidator, Validator>()
+                    .Add<IPasswordHasher, PasswordHasher>())
                 .WithConfiguration<ApplicationDbContext>(context => context
                     .Database.Migrate())
                 .Start();

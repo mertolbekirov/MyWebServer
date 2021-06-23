@@ -4,14 +4,6 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp5.0</TargetFramework>
   </PropertyGroup>
-
-  <ItemGroup>
-    <None Remove="Views\Error.cshtml" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Include="Views\Error.cshtml" />
-  </ItemGroup>
   
   <ItemGroup>
     <Folder Include="Migrations\" />
@@ -36,6 +28,9 @@
 
   <ItemGroup>
     <None Update="Views\Commits\All.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Views\Error.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Views\Commits\Create.cshtml">
