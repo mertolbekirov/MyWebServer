@@ -12,5 +12,12 @@ namespace Git.Data
         public const int UsernameMaxLength = 20;
         public const int PasswordMinLength = 6;
         public const int PasswordMaxLength = 20;
+
+        public const int RepoMinLength = 3;
+        public const int RepoMaxLength = 10;
+        public const string Private = "Private";
+        public const string Public = "Public";
+
+        public const int CommitMinLength = 5;
     }
 }

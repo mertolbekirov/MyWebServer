@@ -10,6 +10,7 @@ using Git.Data.Models;
 
 namespace Git.Controllers
 {
+
     public class UsersController : Controller
     {
         private readonly IValidator validator;
@@ -66,7 +67,7 @@ namespace Git.Controllers
             data.Users.Add(user);
             data.SaveChanges();
 
-            return Redirect("Users/Login");
+            return Redirect("/Users/Login");
         }
 
         [HttpPost]
@@ -87,6 +88,12 @@ namespace Git.Controllers
             this.SignIn(userId);
 
             return Redirect("/Repositories/All");
+        }
+
+        public HttpResponse Logout()
+        {
+            this.SignOut();
+            return Redirect("/");
         }
     }
 }

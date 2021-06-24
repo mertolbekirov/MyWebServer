@@ -8,10 +8,13 @@
                 </div>
                 <div class="credits">
                     <h3 class="text-white">
-                        <a class="text-white" href="/Users/Login">Login</a>
-                        if you have an account or
-                        <a class="text-white" href="/Users/Register">Register</a>
-                        now.
+                        @if (User == null)
+                        {
+                            <a class="text-white" href="/Users/Login">Login</a>
+                            <span>if you have an account or</span>
+                            <a class="text-white" href="/Users/Register">Register</a>
+                            <span>now.</span>
+                        }
                     </h3>
                 </div>
             </div>
